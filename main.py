@@ -5,10 +5,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,SubmitField
 from wtforms.validators import DataRequired
 import requests
+import os
 
 
 app=Flask(__name__)
-app.config["SECRET_KEY"]="willbeinDubai"
+app.config["SECRET_KEY"]=os.environ.get("FLASK_KEY")
 
 bootstrap=Bootstrap5(app)
 
@@ -30,13 +31,13 @@ def home():
             "cbot": "1",
             "SessionID": "RapidAPI1",
             "cbid": "1",
-            "key": "RHMN5hnQ4wTYZBGCF3dfxzypt68rVP",
+            "key": os.environ.get("BOT_KEY"),
             "ChatSource": "RapidAPI",
             "duration": "1"
         }
         headers = {
             "content-type": "application/x-www-form-urlencoded",
-            "X-RapidAPI-Key": "952f7885d1msh2f7c9d55c056698p1b504fjsn7fc7dc8e3c16",
+            "X-RapidAPI-Key": os.environ.get("API_KEY"),
             "X-RapidAPI-Host": "robomatic-ai.p.rapidapi.com"
         }
 
@@ -48,4 +49,4 @@ def home():
 
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=False)
