@@ -1,4 +1,3 @@
-import html
 from flask import Flask,render_template,request
 from flask_bootstrap import Bootstrap5 #pip install bootstrap-flask
 from flask_wtf import FlaskForm
@@ -47,7 +46,7 @@ def home():
         response = requests.post(url, data=payload, headers=headers)
 
         data=response.json()["out"]
-        return render_template("index.html",response=html.unescape(data),bot=True,year=current_year,user_txt=user_query)
+        return render_template("index.html",response=data,bot=True,year=current_year,user_txt=user_query)
     return render_template("index.html",year=current_year)
 
 
