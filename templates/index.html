@@ -10,11 +10,13 @@
          <input type="text" name="query" required><br>
          <button type="submit" class="btn">Chat</button>
      </form>
-{% if bot: %}
         <div class="chatbox">
+{% if user: %}
             <div class="user_txt">
             <p>{{user_txt}}</p>
         </div>
+{% endif %}
+{% if bot: %}
     <div class="chatbot_response">
         {{response}}
     </div>
