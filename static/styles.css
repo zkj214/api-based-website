@@ -72,6 +72,10 @@ form
     border-radius: 10px;
     float: left;
 }
+.chatbox
+{
+    margin-top: 20px;
+}
 
 @media screen and (max-width: 768px)
 {

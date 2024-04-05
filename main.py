@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired
 import requests
 import os
 from datetime import date
+import time
 
 
 app=Flask(__name__)
@@ -25,6 +26,8 @@ def home():
     #form=AskChatbotForm()
     if request.method=="POST":
         user_query=request.form.get("query")
+        return render_template("index.html", bot=True, year=current_year, user_txt=user_query)
+        time.sleep(3)
         url = "https://robomatic-ai.p.rapidapi.com/api"
 
         payload = {
