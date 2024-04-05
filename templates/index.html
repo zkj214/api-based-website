@@ -6,15 +6,19 @@
 {% include "header.html" %}
 <div class="wrapper">
     <div class="container">
-    <div class="col-sm-12 col-md-9">
-    {{render_form(form)}}
-    </div>
+     <form action="" method="post">
+         <input type="text" name="query" required><br>
+         <button type="submit" class="btn">Chat</button>
+     </form>
 {% if bot: %}
-    <div class="response">
+        <div class="user_txt">
+            <p>{{user_txt}}</p>
+        </div>
+    <div class="chatbot_response">
         <p>{{response}}</p>
     </div>
 {% endif %}
-</div>
+    </div>
 </div>
 {% include "footer.html" %}
 {% endblock %}

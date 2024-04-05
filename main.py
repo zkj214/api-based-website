@@ -1,5 +1,5 @@
 import html
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 from flask_bootstrap import Bootstrap5 #pip install bootstrap-flask
 from flask_wtf import FlaskForm
 from wtforms import StringField,SubmitField
@@ -23,12 +23,13 @@ class AskChatbotForm(FlaskForm):
 @app.route('/',methods=["GET","POST"])
 def home():
     current_year=date.today().year
-    form=AskChatbotForm()
-    if form.validate_on_submit():
+    #form=AskChatbotForm()
+    if request.method=="POST":
+        user_query=request.form.get("query")
         url = "https://robomatic-ai.p.rapidapi.com/api"
 
         payload = {
-            "in": f"{html.unescape(form.query.data)}",
+            "in": f"{user_query}",
             "op": "in",
             "cbot": "1",
             "SessionID": "RapidAPI1",
@@ -46,8 +47,8 @@ def home():
         response = requests.post(url, data=payload, headers=headers)
 
         data=response.json()["out"]
-        return render_template("index.html",response=data,bot=True,form=form,year=current_year)
-    return render_template("index.html",form=form,year=current_year)
+        return render_template("index.html",response=html.unescape(data),bot=True,year=current_year,user_txt=user_query)
+    return render_template("index.html",year=current_year)
 
 
 if __name__=="__main__":
