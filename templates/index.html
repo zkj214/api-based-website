@@ -11,12 +11,10 @@
          <button type="submit" class="btn">Chat</button>
      </form>
         <div class="chatbox">
-{% if user: %}
+{% if bot: %}
             <div class="user_txt">
             <p>{{user_txt}}</p>
         </div>
-{% endif %}
-{% if bot: %}
     <div class="chatbot_response">
         {{response}}
     </div>
