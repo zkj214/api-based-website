@@ -6,7 +6,6 @@ from wtforms.validators import DataRequired
 import requests
 import os
 from datetime import date
-import time
 
 
 app=Flask(__name__)
@@ -48,7 +47,7 @@ def home():
         response = requests.post(url, data=payload, headers=headers)
 
         data = response.json()["out"]
-        return render_template("index.html",response=data,bot=True,year=current_year,user_txt=user_query,delay=time.sleep(3))
+        return render_template("index.html",response=data,bot=True,year=current_year,user_txt=user_query)
     return render_template("index.html",year=current_year)
 
 
