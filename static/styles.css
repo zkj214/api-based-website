@@ -22,6 +22,10 @@ h1 a {
     margin-top: 100px;
     border-radius: 10px;
     float: right;
+    display: none;
+    transition-property: display;
+    transition-delay: 3s;
+    display: block;
 }
 .wrapper
 {
