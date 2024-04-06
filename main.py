@@ -26,6 +26,8 @@ def home():
     #form=AskChatbotForm()
     if request.method=="POST":
         user_query=request.form.get("query")
+        return render_template("index.html", user=True, year=current_year, user_txt=user_query)
+        time.sleep(3)
         url = "https://robomatic-ai.p.rapidapi.com/api"
 
         payload = {
@@ -46,9 +48,7 @@ def home():
 
         response = requests.post(url, data=payload, headers=headers)
 
-        data=response.json()["out"]
-        return render_template("index.html", user=True, year=current_year, user_txt=user_query)
-        time.sleep(3)
+        data = response.json()["out"]
         return render_template("index.html",response=data,user=True,bot=True,year=current_year,user_txt=user_query)
     return render_template("index.html",year=current_year)
 
